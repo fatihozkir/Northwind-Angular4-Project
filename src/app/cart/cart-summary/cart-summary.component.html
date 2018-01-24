@@ -5,7 +5,7 @@
     <ul class="dropdown-menu">
       <li><a *ngFor="let item of cartItems"><i class="btn btn-xs btn-danger glyphicon glyphicon-remove"></i> {{item.product.productName }} - x{{item.quantity}} </a></li>
       <li role="separator" class="divider"></li>
-      <li><a class="text-center"> <span class="glyphicon glyphicon-shopping-cart"></span>   <strong>Go to cart !</strong></a></li>
+      <li><a class="text-center" routerLink="my-cart"> <span class="glyphicon glyphicon-shopping-cart"></span>   <strong>Go to cart !</strong></a></li>
     </ul>
   </li>
 </ul>

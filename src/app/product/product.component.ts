@@ -24,12 +24,11 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params=>{
-      this.getProducts(params["seoUrl"]);
+    
+    this.activatedRoute.params.subscribe(params=>{this.getProducts(params["seoUrl"]);
     });
     
   }
-""
   getProducts(seoUrl:string) {
     this.productService.getProducts(seoUrl).subscribe(x => { this.products = x });
     

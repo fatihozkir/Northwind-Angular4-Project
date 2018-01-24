@@ -3,9 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms'
-import { Routes,RouterModule } from '@angular/router'
+import { Routes, RouterModule } from '@angular/router'
 
-import{SimpleNotificationsModule,NotificationsService} from 'angular2-notifications'
+import { SimpleNotificationsModule, NotificationsService } from 'angular2-notifications'
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -20,20 +20,26 @@ import { CartService } from './cart/cart.service';
 import { VatAddedPipe } from './product/vat-added.pipe';
 import { ProductFilterPipe } from './product/product-filter.pipe';
 
-const appRoutes:Routes=[
+const appRoutes: Routes = [
   {
-    path:"",
-    redirectTo:"products",
-    pathMatch:"full"
+    path: "",
+    redirectTo: "products",
+    pathMatch: "full"
   },
   {
-    path:"",
-    component:ProductComponent
+    path: "products",
+    component: ProductComponent,
+
   },
   {
-    path:"products/:seoUrl",
-    component:ProductComponent
+    path: "products/:seoUrl",
+    component: ProductComponent,
+  },
+  {
+    path:"my-cart",
+    component:CartComponent
   }
+
 ]
 
 
@@ -59,11 +65,11 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     SimpleNotificationsModule.forRoot()
   ],
-  exports:[
+  exports: [
 
   ],
   providers: [
-    {provide:"apiUrl",useValue:"http://northwindapi.azurewebsites.net/api"},
+    { provide: "apiUrl", useValue: "http://northwindapi.azurewebsites.net/api" },
     NotificationsService,
     CartService
   ],
