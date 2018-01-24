@@ -1,7 +1,16 @@
-<div>
-  <ul>
-    <li *ngFor="let product of products">
-      Product Name: {{product.productName}}
+<div class="col-md-8">
+    <h4 class="page-header">Products</h4>
+    <div *ngIf="filterText">You Searched for <strong> {{filterText}} </strong></div>
+    <div><input type="text" placeholder="Enter a value" class="form-control" [(ngModel)]="filterText"  ></div><br>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let product of products | productFilter:filterText">
+     <button (click)="addToCart(product)" class="btn btn-xs btn-primary pull-right">
+       <i class="glyphicon glyphicon-plus"></i>
+      Add To Cart
+    </button>
+      <h5><strong>{{product.productName | uppercase}}</strong></h5>
+     <p>{{product.quantityPerUnit}}</p>
+     <h6>{{product.unitPrice | currency:'EUR':true}} <br/> <br/> <strong> Vat Included Price: ({{product.unitPrice | vatAdded:10 | currency:'EUR':true}})</strong></h6>
     </li>
   </ul>
 </div>

@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   providers:[]
 })
 export class AppComponent {
-  title = 'Fatih Ozkir Angular4 app';
+  title = 'Northwind App';
+  public options={
+    position:["bottom","right"],
+    timeOut:3000,
+    lastOnBottom:true
+  }
 }
