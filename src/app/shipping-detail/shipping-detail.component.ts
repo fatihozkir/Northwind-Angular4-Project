@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgForm } from '@angular/forms'
+import { ShippingDetail } from './shipping-detail';
+import { CartService } from '../cart/cart.service';
+import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-shipping-detail',
   templateUrl: './shipping-detail.component.html',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShippingDetailComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private cartService:CartService,private notificationService:NotificationsService,private router:Router) { }
+  cities = [];
+  model:ShippingDetail=new ShippingDetail('','',true,-1);
   ngOnInit() {
+    this.cities.push(
+      {
+        "id": 1,
+        "name": "Sliema"
+      },
+      {
+        "id": "2",
+        "name": "Gzira"
+      },
+      {
+        "id": "3",
+        "name": "Swieqi"
+      },
+      {
+        "id": 4,
+        "name": "Valetta"
+      }
+    );
+  }
+  checkout(form:NgForm){
+    if(form.invalid)return;
+    this.cartService.clear();
+    this.notificationService.info("Successfull","Shopping completed !");
+    this.router.navigate(["products"]);
   }
 
 }

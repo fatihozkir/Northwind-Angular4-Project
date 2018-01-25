@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service'
 import { CartItem } from '../cart-item'
 import { DoCheck } from '@angular/core/src/metadata/lifecycle_hooks';
+import {Product} from '../../product/product';
 @Component({
   selector: 'app-cart-summary',
   templateUrl: './cart-summary.component.html',
@@ -21,6 +22,12 @@ export class CartSummaryComponent implements OnInit, DoCheck {
   cartItems:CartItem[];
   ngOnInit() {
    this.cartItems=this.cartService.list();
+   
+  }
+
+  removeFromCart(product: Product) {
+    this.cartService.removeFromCart(product);
+      
   }
 
 }

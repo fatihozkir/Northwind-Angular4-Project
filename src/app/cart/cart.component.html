@@ -1,3 +1,40 @@
-<p>
-  cart works!
-</p>
+<div class="col-md-8">
+  <h4 class="page-header">
+    Your Cart
+  <a *ngIf="cartItems.length>0" routerLink="/shipping-detail" class="btn btn-xs btn-primary pull-right">
+    Complete Shopping
+    <i class="glyphicon glyphicon-arrow-right"></i>
+  </a>
+  </h4>
+  
+  <table class="table table-responsive" *ngIf="cartItems.length > 0;else cartEmptyContent" >
+    <thead>
+      <th>Product Name</th>
+      <th>Description</th>
+      <th>UnitPrice</th>
+      <th>UnitsInStock</th>
+      <th>Total Price</th>
+      <th></th>
+    </thead>
+    
+    <tbody>
+      <tr *ngFor="let cartItem of cartItems">
+        <td>{{cartItem.product.productName}}</td>
+        <td>{{cartItem.product.quantityPerUnit}}</td>
+        <td>{{cartItem.product.unitPrice | currency:'EUR':true}}</td>
+        <td>{{cartItem.quantity}}</td>
+        <td>{{cartItem.product.unitPrice * cartItem.quantity | currency:'EUR':true}}</td>
+        <td>
+          <button class="btn btn-xs btn-danger" (click)="removeFromCart(cartItem.product)">
+            <i class="glyphicon glyphicon-remove"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <ng-template #cartEmptyContent>
+    <div class="alert alert-info">Your cart is empty !</div>  
+  </ng-template>
+  
+</div>

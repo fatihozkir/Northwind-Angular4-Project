@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { AccountService } from '../../account/account.service'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-logged',
   templateUrl: './logged.component.html',
-  styleUrls: ['./logged.component.css']
+  styleUrls: ['./logged.component.css'],
 })
-export class LoggedComponent implements OnInit {
+export class LoggedComponent implements DoCheck {
+  isLogged:boolean=false;
+  ngDoCheck(): void {
+    this.isLogged=this.accountService.isLoggedIn();
+  }
 
-  constructor() { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
-  ngOnInit() {
+  logOut() {
+    this.accountService.logOut();
+    this.router.navigate(["account"]);
   }
 
 }
