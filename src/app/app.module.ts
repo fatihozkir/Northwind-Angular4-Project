@@ -21,7 +21,7 @@ import { VatAddedPipe } from './product/vat-added.pipe';
 import { ProductFilterPipe } from './product/product-filter.pipe';
 import { AccountService } from './account/account.service';
 import { LoginGuard } from './account/login.guard';
-
+import { PendingChangesGuard } from './guards/pending-changes-guard';
 
 const appRoutes: Routes = [
   {
@@ -45,7 +45,8 @@ const appRoutes: Routes = [
   {
     path:"shipping-detail",
     component:ShippingDetailComponent,
-    canActivate:[LoginGuard]
+    canActivate:[LoginGuard],
+    canDeactivate:[PendingChangesGuard]
   },
   {
     path:"account",
@@ -85,7 +86,8 @@ const appRoutes: Routes = [
     NotificationsService,
     CartService,
     AccountService,
-    LoginGuard
+    LoginGuard,
+    PendingChangesGuard
   ],
   bootstrap: [AppComponent]
 })

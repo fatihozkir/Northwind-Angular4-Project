@@ -3,13 +3,13 @@
   <form #shippingForm="ngForm" (ngSubmit)="checkout(shippingForm)">
     <div class="form-group" [class.has-error]="fullName.invalid&&fullName.dirty">
       <label class="control-label" for="fullName">Full Name </label>
-      <input type="text" #fullName="ngModel" class="form-control" id="fullName" name="fullName" [(ngModel)]="model.fullName" required>
+      <input (change)="isDirty=true" type="text" #fullName="ngModel" class="form-control" id="fullName" name="fullName" [(ngModel)]="model.fullName" required>
       <span class="help-block" *ngIf="fullName.invalid&&fullName.dirty">Fullname is required. Please enter your fullname</span>
     </div>
 
     <div class="form-group" [class.has-error]="address.invalid&&address.dirty">
       <label class="control-label" for="address">Address </label>
-      <textarea type="text" #address="ngModel" class="form-control" id="address" name="address" [(ngModel)]="model.address" required
+      <textarea (change)="isDirty=true"  type="text" #address="ngModel" class="form-control" id="address" name="address" [(ngModel)]="model.address" required
         rows="3" minlength="10"></textarea>
       <span class="help-block" *ngIf="address.invalid&&address.dirty">Address is required and should be min 10 characters. Please enter your address</span>
     </div>
